@@ -3,32 +3,35 @@
 <head>
     <title>Chargement dynamique de données pour plot</title>
     <script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6/+esm"></script>
+        <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
+       <header>
         <nav>
-            <ul>
-                <li><a href="#sous-partie1">Sous-partie 1</a></li>
-                <li><a href="#sous-partie2">Sous-partie 2</a></li>
+            <ul id="tab1">
+                <li><a href="#sous-partie1" >Grand Chelem</a></li>
+                <li><a href="#sous-partie2" >Big Three</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <section id="sous-partie1">
-            <h2>Sous-partie 1</h2>
-            <p>Contenu textuel de la sous-partie 1.</p>
+        <section id="sous-partie1" >
+            <h2>Évolution des gains du vainqueur du grand chelem</h2>
+            <p>Le graphique illustre de manière claire l'augmentation constante des gains financiers pour les vainqueurs des quatre tournois du Grand Chelem au fil des décennies.  </p>
             <figure>
-                <figcaption>Figure 1</figcaption>
+                <figcaption>Figure 1: Evolution des gains du vainqueur en Euros pour chaque tournoi du grand chelem de 1968 à 2022/figcaption>
                 <div id="graph1"></div>
             </figure>
         </section>
 
-        <section id="sous-partie2">
-            <h2>Sous-partie 2</h2>
-            <p>Contenu textuel de la sous-partie 2.</p>
+        <section id="sous-partie2" >
+            <h2>Domination du Big three en grand chelem de 2002 à 2022</h2>
+            <p>Nombres de victoire par tournoi</p>
             <figure>
-                <figcaption>Figure 2</figcaption>
+                <figcaption>Figure 2: Nombres de victoire par tourno</figcaption>
                 <div id="graph2"></div>
             </figure>
         </section>
@@ -45,9 +48,6 @@
         x: { label: "Année" },
         y: { label: "Gain en €" },
         color: { legend: true },
-        title: "Évolution des gains du vainqueur du grand chelem",
-        subtitle:
-            "Evolution des gains du vainqueur en Euros pour chaque tournoi du grand chelem de 1968 à 2022 ",
         marginLeft: 110,
         marks: [
             Plot.lineY(data, {
@@ -68,10 +68,6 @@
         
         const plot1 = Plot.plot({
             color: { legend: true },
-            title:
-                "Domination du Big three de 2002 à 2022 sur les tournois de grand Chelem",
-            subtitle:
-                "Nombre de victoires par tournoi du grand chelem et par joueur entre 2002 et 2022",
             marginLeft: 150,
             height: 500,
             x: { label: "Tournois" },
