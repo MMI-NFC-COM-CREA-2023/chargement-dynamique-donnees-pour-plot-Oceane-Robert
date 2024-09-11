@@ -27,16 +27,7 @@
             <p>Contenu textuel de la sous-partie 1.</p>
             <figure>
                 <figcaption>Figure 1</figcaption>
-                <div id="myplot"></div>
-                <script type="module">
-
-                import * as Plot from "https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6/+esm";
-
-                const plot = Plot.rectY({length: 10000}, Plot.binX({y: "count"}, {x: Math.random})).plot();
-                const div = document.querySelector("#myplot");
-                div.append(plot);
-
-                </script>
+                <div id="graph"></div>
             </figure>
         </section>
 
@@ -50,10 +41,9 @@
         </section>
     </main>
     <script type="module">
-      const dataResponse = await fetch("./dataCorected.json");
+      const dataResponse = await fetch("./mens_tennis_grand_slam_winner.json");
       const data = await dataResponse.json();
       console.log(data);
-
     </script>
 </body>
 </html>
