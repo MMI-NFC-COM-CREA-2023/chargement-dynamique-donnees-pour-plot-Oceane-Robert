@@ -2,14 +2,6 @@
 <html>
 <head>
     <title>Chargement dynamique de données pour plot</title>
-    <style>
-        /* Styling de la div */
-        #graph {
-            width: 300px;
-            height: 200px;
-            background-color: lightblue;
-        }
-    </style>
 </head>
 <body>
     <header>
@@ -27,7 +19,7 @@
             <p>Contenu textuel de la sous-partie 1.</p>
             <figure>
                 <figcaption>Figure 1</figcaption>
-                <div id="graph"></div>
+                <div id="graph1"></div>
             </figure>
         </section>
 
@@ -36,14 +28,37 @@
             <p>Contenu textuel de la sous-partie 2.</p>
             <figure>
                 <figcaption>Figure 2</figcaption>
-                <div id="graph"></div>
+                <div id="graph2"></div>
             </figure>
         </section>
     </main>
     <script type="module">
+      import * as Plot from "https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6/+esm";
       const dataResponse = await fetch("./mens_tennis_grand_slam_winner.json");
       const data = await dataResponse.json();
       console.log(data);
+
+      const plot = Plot.plot({
+        x: { label: "Année" },
+        y: { label: "Gain en €" },
+        color: { legend: true },
+        title: "Évolution des gains du vainqueur du grand chelem",
+        subtitle:
+            "Evolution des gains du vainqueur en Euros pour chaque tournoi du grand chelem de 1968 à 2022 ",
+        marginLeft: 110,
+        marks: [
+            Plot.lineY(data, {
+            x: "YEAR",
+            y: "WINNER_PRIZE_EUROS",
+            stroke: "TOURNAMENT",
+            tip: true
+            })
+        ]
+        }); 
+    
+        const div = document.querySelector("#graph1");
+        div.append(plot);
+
     </script>
 </body>
 </html>
