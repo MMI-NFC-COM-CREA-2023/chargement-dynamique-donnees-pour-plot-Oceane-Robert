@@ -59,6 +59,35 @@
         const div = document.querySelector("#graph1");
         div.append(plot);
 
+        const dataResponse1 = await fetch("./mens_tennis.json");
+        const data1 = await dataResponse1.json();
+        console.log(data1);
+        
+        const plot1 = Plot.plot({
+            color: { legend: true },
+            title:
+                "Domination du Big three de 2002 à 2022 sur les tournois de grand Chelem",
+            subtitle:
+                "Nombre de victoires par tournoi du grand chelem et par joueur entre 2002 et 2022",
+            marginLeft: 150,
+            height: 500,
+            x: { label: "Tournois" },
+            y: { label: "Vainqueurs", grid: true },
+            r: {
+                range: [0, 20]
+            },
+            marks: [
+                Plot.dot(
+                data1,
+                Plot.group(
+                    { r: "count", },
+                    { x: "TOURNAMENT", y: "WINNER", fill: "TOURNAMENT", tip: true }
+                )
+                )
+            ]
+            });
+        const div1 = document.querySelector("#graph2");
+        div1.append(plot1);
     </script>
 </body>
 </html>
